@@ -1,0 +1,13 @@
+/* .hidden {
+  display: none;
+} */
+
+/* LS' cleaner approach: */
+
+article {
+  display: none;
+}
+
+article[data-block="gold"] {
+  display: block;
+}
