@@ -64,16 +64,24 @@ main {
 #apples.guess_5 { background-position: 0 -1610px; }
 #apples.guess_6 { display: none; }
 
+
+p {
+  padding-bottom: 25px;
+  font-size: 20px;
+}
+
 #spaces,
 #guesses,
 p {
   padding: 0 0 40px 0;
 }
 
-p {
-  padding-bottom: 25px;
-  font-size: 20px;
+#spaces > p,
+#guesses > p {
+  font-size: 28px;
+  text-transform: uppercase;
 }
+
 p:empty {
   display: none;
 }
