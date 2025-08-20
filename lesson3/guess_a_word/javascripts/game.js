@@ -69,6 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let guessesDiv = document.querySelector('#guesses');
   let replayLink = document.querySelector('#replay');
   let game = new Game();
+  let apples = document.querySelector('#apples');
+
+  function setApplesLost(incorrectGuesses) {
+    if (incorrectGuesses === 0) {
+      apples.className = '';
+      return;
+    }
+    apples.className = `guess_${game.incorrectGuesses}`;
+  }
 
   let wordP = document.createElement('p');
   wordP.style.display = 'inline-block';
@@ -86,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (key.length !== 1 || Game.notALetter(key)) return;
 
     game.makeGuess(key);
+    setApplesLost(game.incorrectGuesses);
     wordP.textContent = game.getCurrentState();
     guessesP.textContent = game.lettersGuessed.join(' ');
 
@@ -115,14 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     body.classList.remove('win', 'lose');
+    setApplesLost(game.incorrectGuesses);
     message.textContent = '';
     wordP.textContent = game.getCurrentState();
     guessesP.textContent = '';
     replayLink.style.display = 'none';
   });
 });
-
-/*
-- unbind replayLink event listener -- find out how to bind again after a new game starts.
-- add apple removing functionality -- reset when new game is started.
-*/
