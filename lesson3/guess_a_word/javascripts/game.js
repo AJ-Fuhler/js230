@@ -79,26 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     apples.className = `guess_${game.incorrectGuesses}`;
   }
 
-  let wordP = document.createElement('p');
-  wordP.style.display = 'inline-block';
-  wordP.textContent = game.getCurrentState();
-  wordDiv.appendChild(wordP);
-
-  let guessesP = document.createElement('p');
-  guessesP.style.display = 'inline-block';
-  guessesDiv.appendChild(guessesP);
-
-  replayLink.style.display = 'none';
-
-  document.addEventListener('keyup', event => {
-    let key = event.key;
-    if (key.length !== 1 || Game.notALetter(key)) return;
-
-    game.makeGuess(key);
-    setApplesLost(game.incorrectGuesses);
-    wordP.textContent = game.getCurrentState();
-    guessesP.textContent = game.lettersGuessed.join(' ');
-
+  function handleGameOver(game) {
     if (game.gameOver()) {
       if (game.hasWon()) {
         message.textContent = 'You win!';
@@ -110,6 +91,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
       replayLink.style.display = 'block';
     }
+  }
+
+  function updateWordDisplay(gamestate) {
+    wordP.textContent = gamestate;
+  }
+
+  function updateGuessesDisplay(letters) {
+    guessesP.textContent = letters.join(' ');
+  }
+
+  function resetUI() {
+    body.classList.remove('win', 'lose');
+    setApplesLost(game.incorrectGuesses);
+    message.textContent = '';
+    updateWordDisplay(game.getCurrentState());
+    updateGuessesDisplay(game.lettersGuessed);
+    replayLink.style.display = 'none';
+  }
+
+  let wordP = document.createElement('p');
+  wordP.style.display = 'inline-block';
+  wordDiv.appendChild(wordP);
+
+  let guessesP = document.createElement('p');
+  guessesP.style.display = 'inline-block';
+  guessesDiv.appendChild(guessesP);
+
+  resetUI();
+
+  document.addEventListener('keyup', event => {
+    let key = event.key;
+    if (key.length !== 1 || Game.notALetter(key)) return;
+
+    game.makeGuess(key);
+    setApplesLost(game.incorrectGuesses);
+    updateWordDisplay(game.getCurrentState());
+    updateGuessesDisplay(game.lettersGuessed);
+
+    handleGameOver(game);
 
   });
 
@@ -124,11 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    body.classList.remove('win', 'lose');
-    setApplesLost(game.incorrectGuesses);
-    message.textContent = '';
-    wordP.textContent = game.getCurrentState();
-    guessesP.textContent = '';
-    replayLink.style.display = 'none';
+    resetUI();
+
   });
 });
