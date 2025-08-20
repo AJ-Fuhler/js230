@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       apples.className = '';
       return;
     }
-    apples.className = `guess_${game.incorrectGuesses}`;
+    apples.className = `guess_${incorrectGuesses}`;
   }
 
   function handleGameOver(game) {
