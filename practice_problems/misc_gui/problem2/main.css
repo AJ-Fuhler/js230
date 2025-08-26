@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #333355;
+  color: white;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main {
+  display: grid;
+  grid-template-areas:
+  "img1 img2 img3 img4"
+  "img5 img6 img7 img8";
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+
+figure {
+  position: relative;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+figure figcaption {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  position: absolute;
+  bottom: -145px;
+}
+
+.tooltip {
+  z-index: 1;
+  display: block;
+  visibility: visible;
+  width: 350px;
+  height: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+#img1 {
+  grid-area: img1;
+}
+
+#img2 {
+  grid-area: img2;
+}
+
+#img3 {
+  grid-area: img3;
+}
+
+#img4 {
+  grid-area: img4;
+}
+
+#img5 {
+  grid-area: img5;
+}
+
+#img6 {
+  grid-area: img6;
+}
+
+#img7 {
+  grid-area: img7;
+}
+
+#img8 {
+  grid-area: img8;
+}

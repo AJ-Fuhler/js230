@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', event => {
       let sectionId = event.currentTarget.parentNode.id;
-      let language = languages.filter(language => language.name === sectionId)[0];
+      let language = languages.find(language => language.name === sectionId);
       let p = event.currentTarget.parentNode.querySelector('p');
 
       if (event.currentTarget.textContent === 'Show More') {
