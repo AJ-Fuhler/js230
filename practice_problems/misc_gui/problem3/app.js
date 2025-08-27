@@ -26,27 +26,35 @@ document.addEventListener('DOMContentLoaded', () => {
     todoItems.forEach(createAndAddLi);
   }
 
+  function showPrompt(id) {
+    let todoTitle = todoItems.find(todo => String(todo.id) === id).title;
+    let confirmParagraph = confirmPrompt.querySelector('p');
+    confirmParagraph.textContent = `Are you sure you want to delete "${todoTitle}"?`;
+    confirmParagraph.setAttribute('data-id', id);
+    overlay.classList.add('show');
+  }
+
+  function hidePrompt() {
+    overlay.classList.remove('show');
+  }
+
   todoItems.forEach(createAndAddLi);
 
   document.querySelector('main').addEventListener('click', event => {
     if (event.target.tagName === 'BUTTON' && event.target.parentNode.tagName === 'LI') {
-      event.preventDefault();
       let id = event.target.parentNode.dataset.id;
-      let todoTitle = todoItems.find(todo => String(todo.id) === id).title;
-      let confirmParagraph = confirmPrompt.querySelector('p');
-      confirmParagraph.textContent = `Are you sure you want to delete "${todoTitle}"?`;
-      confirmParagraph.setAttribute('data-id', id);
-      overlay.classList.add('show');
+      showPrompt(id);
+
     } else if (event.target.tagName === 'BUTTON') {
       if (event.target.classList.contains('yes')) {
         let id = event.target.parentNode.parentNode.querySelector('p').dataset.id;
         updateListItems(id);
-        overlay.classList.remove('show');
+        hidePrompt();
       } else {
-        overlay.classList.remove('show');
+        hidePrompt();
       }
     } else {
-      overlay.classList.remove('show');
+      hidePrompt();
     }
   });
 });
