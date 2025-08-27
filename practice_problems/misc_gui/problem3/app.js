@@ -26,11 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     todoItems.forEach(createAndAddLi);
   }
 
-  function showPrompt(id) {
-    let todoTitle = todoItems.find(todo => String(todo.id) === id).title;
+  function showPrompt(todo) {
     let confirmParagraph = confirmPrompt.querySelector('p');
-    confirmParagraph.textContent = `Are you sure you want to delete "${todoTitle}"?`;
-    confirmParagraph.setAttribute('data-id', id);
+    confirmParagraph.textContent = `Are you sure you want to delete "${todo.title}"?`;
+    confirmParagraph.setAttribute('data-id', todo.id);
     overlay.classList.add('show');
   }
 
@@ -42,8 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelector('main').addEventListener('click', event => {
     if (event.target.tagName === 'BUTTON' && event.target.parentNode.tagName === 'LI') {
-      let id = event.target.parentNode.dataset.id;
-      showPrompt(id);
+      let todo = todoItems
+        .find(todo => String(todo.id) === event.target.parentNode.dataset.id);
+      showPrompt(todo);
 
     } else if (event.target.tagName === 'BUTTON') {
       if (event.target.classList.contains('yes')) {
