@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #226543;
+  font-family: monospace;
+  padding: 20px 0 0 20px;
+}
+
+h1 {
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  position: relative;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F0F0F0;
+  width: 600px;
+  padding: 15px;
+  margin: 0 0 20px 0;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+button.delete {
+  background-image: url('delete.png');
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: none;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+button.delete:hover {
+  transform: scale(1.1);
+}
+
+.overlay {
+  z-index: 1;
+  visibility: hidden;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.confirm-prompt {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  z-index: 2;
+  background-color: #F0F0F0;
+  padding: 10px;
+  width: 400px;
+  height: 150px;
+}
+
+.show {
+  visibility: unset;
+}
+
+.confirm-buttons {
+  margin-top: 70px;
+  margin-left: 280px;
+}
+
+.confirm-buttons button {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 40px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.confirm-buttons button:hover {
+  transform: scale(1.05);
+}
+
+.yes {
+  background-color: green;
+}
+
+.no {
+  background-color: rgb(152, 27, 27);
+}

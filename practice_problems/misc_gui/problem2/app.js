@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     image.addEventListener('mouseenter', event => {
       let figcaption = event.target.parentNode.querySelector('figcaption');
-      figcaption.style.display = 'block';
       timeoutId = setTimeout(toggleTooltipClass, 2000, figcaption);
     });
     image.addEventListener('mouseleave', event => {
