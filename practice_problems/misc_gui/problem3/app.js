@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ul.appendChild(li);
   }
 
+  function updateListItems(id) {
+    ul.innerHTML = '';
+    todoItems = todoItems.filter(todo => todo.id !== Number(id));
+    todoItems.forEach(createAndAddLi);
+  }
+
   todoItems.forEach(createAndAddLi);
 
   document.querySelector('main').addEventListener('click', event => {
@@ -27,16 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       let id = event.target.parentNode.dataset.id;
       let todoTitle = todoItems.find(todo => String(todo.id) === id).title;
-      confirmPrompt.querySelector('p').textContent = `Are you sure you want to delete "${todoTitle}"?`;
+      let confirmParagraph = confirmPrompt.querySelector('p');
+      confirmParagraph.textContent = `Are you sure you want to delete "${todoTitle}"?`;
+      confirmParagraph.setAttribute('data-id', id);
       overlay.classList.add('show');
     } else if (event.target.tagName === 'BUTTON') {
       if (event.target.classList.contains('yes')) {
-        let title = event.target.parentNode.parentNode.querySelector('p').textContent
-          .match(/"[a-z]+"/gi)[0]
-          .replace(/"/g, "");
-        let id = todoItems.find(todo => todo.title === title).id;
-        let liToDelete = ul.querySelector(`li[data-id="${id}"]`);
-        liToDelete.remove();
+        let id = event.target.parentNode.parentNode.querySelector('p').dataset.id;
+        updateListItems(id);
         overlay.classList.remove('show');
       } else {
         overlay.classList.remove('show');
