@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
       timeoutId = setTimeout(toggleTooltipClass, 2000, figcaption);
     });
     image.addEventListener('mouseleave', event => {
+      let figcaption = event.target.parentNode.querySelector('figcaption');
       clearTimeout(timeoutId);
-      event.target.parentNode.querySelector('figcaption').classList.remove('tooltip');
-    })
+      figcaption.classList.remove('tooltip');
+    });
   });
 });

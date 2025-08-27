@@ -39,23 +39,21 @@ figure img {
 }
 
 figure figcaption {
-  display: none;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.5s ease, visibility 0.5s ease;
   position: absolute;
   bottom: -145px;
-}
-
-.tooltip {
-  z-index: 1;
-  display: block;
-  visibility: visible;
   width: 350px;
   height: 150px;
   padding: 10px;
   border-radius: 5px;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tooltip {
+  visibility: visible;
   opacity: 1;
 }
 
