@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let ul = document.querySelector('ul');
   let overlay = document.querySelector('.overlay');
   let confirmPrompt = document.querySelector('.confirm-prompt');
+  let contextMenu = document.querySelector('.context-menu');
 
   function createAndAddLi(todo) {
     let li = document.createElement('li');
@@ -37,6 +38,34 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.classList.remove('show');
   }
 
+  function createContextContent(id) {
+    let ul = document.createElement('ul');
+    let editLi = document.createElement('li');
+    let showDetailsLi = document.createElement('li');
+    let deleteLi = document.createElement('li');
+
+    editLi.textContent = 'Edit Todo';
+    showDetailsLi.textContent = 'Show Details';
+    deleteLi.textContent = 'Delete';
+
+    deleteLi.setAttribute('data-id', id);
+    deleteLi.classList.add('delete')
+
+    ul.appendChild(editLi);
+    ul.appendChild(showDetailsLi);
+    ul.appendChild(deleteLi);
+
+    contextMenu.appendChild(ul);
+  }
+
+  function showContextMenu() {
+    contextMenu.classList.add('show');
+  }
+
+  function hideContextMenu() {
+    contextMenu.classList.remove('show');
+  }
+
   todoItems.forEach(createAndAddLi);
 
   document.querySelector('main').addEventListener('click', event => {
@@ -53,8 +82,35 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         hidePrompt();
       }
-    } else {
+    } else if (event.target.classList.contains('overlay')) {
       hidePrompt();
+    }
+  });
+
+  ul.addEventListener('contextmenu', event => {
+    if (event.target.tagName !== 'UL') {
+      event.preventDefault();
+      let clickedLi = event.target.tagName === 'LI' ? event.target : event.target.parentNode;
+
+      if (contextMenu.childElementCount === 0) {
+        createContextContent(clickedLi.dataset.id);
+      } else {
+        contextMenu.querySelector('.delete')
+          .setAttribute('data-id', clickedLi.dataset.id);
+      }
+
+      contextMenu.style.top = event.clientY + 'px';
+      contextMenu.style.left = event.clientX + 'px';
+      showContextMenu();
+    }
+  });
+
+
+  contextMenu.addEventListener('click', event => {
+    if (event.target.classList.contains('delete')) {
+      let todo = todoItems.find(todo => String(todo.id) === event.target.dataset.id);
+      hideContextMenu();
+      showPrompt(todo);
     }
   });
 });

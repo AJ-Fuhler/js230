@@ -12,12 +12,12 @@ h1 {
   color: white;
 }
 
-ul {
+ul.todos {
   list-style-type: none;
   position: relative;
 }
 
-li {
+ul.todos > li {
   display: flex;
   justify-content: space-between;
   background-color: #F0F0F0;
@@ -63,10 +63,11 @@ button.delete:hover {
   padding: 10px;
   width: 400px;
   height: 150px;
+  border-radius: 5px;
 }
 
 .show {
-  visibility: unset;
+  visibility: visible;
 }
 
 .confirm-buttons {
@@ -93,4 +94,46 @@ button.delete:hover {
 
 .no {
   background-color: rgb(152, 27, 27);
+}
+
+.context-menu {
+  position: absolute;
+  z-index: 3;
+  border-radius: 5px;
+  visibility: hidden;
+}
+
+.context-menu.show {
+  visibility: visible;
+}
+
+.context-menu > ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.context-menu > ul > li {
+  background-color: #CCCCCC;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.context-menu > ul > li:hover {
+  background-color: #BBBBBB;
+  color: white;
+}
+
+.context-menu > ul > li:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.context-menu > ul > li:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
