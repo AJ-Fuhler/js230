@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   todoItems.forEach(createAndAddLi);
 
-  document.querySelector('main').addEventListener('click', event => {
+  document.addEventListener('click', event => {
     if (event.target.tagName === 'BUTTON' && event.target.parentNode.tagName === 'LI') {
       let todo = todoItems
         .find(todo => String(todo.id) === event.target.parentNode.dataset.id);
@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } else if (event.target.classList.contains('overlay')) {
       hidePrompt();
+    } else if (contextMenu.classList.contains('show')) {
+      hideContextMenu();
     }
   });
 
@@ -107,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   contextMenu.addEventListener('click', event => {
+    event.stopPropagation();
     if (event.target.classList.contains('delete')) {
       let todo = todoItems.find(todo => String(todo.id) === event.target.dataset.id);
       hideContextMenu();
