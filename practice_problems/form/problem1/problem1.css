@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  font-family: monospace;
+  background-color: rgb(43, 38, 38);
+}
+
+form {
+  background-color: rgb(64, 81, 87);
+  color: white;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-family: monospace;
+  border: 1.5px solid gray;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(69, 191, 69);;
+}
+
+button {
+  font-family: monospace;
+}
+
+.error-message {
+  color: red;
+}
+
+.error-input {
+  border-color: red;
+}

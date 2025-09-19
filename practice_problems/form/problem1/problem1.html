@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="problem1.css">
+  <script src="problem1.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Sign-Up Form</h1>
+  </header>
+  <form novalidate>
+    <label data-id="first-name">
+      First Name:
+      <input type="text" name="first-name" id="first-name" required>
+    </label>
+    <label data-id="last-name">
+      Last Name:
+      <input type="text" name="last-name" id="last-name" required>
+    </label>
+    <label data-id="email">
+      Email:
+      <input type="email" name="email" id="email" required>
+    </label>
+    <label data-id="password">
+      Password:
+      <input type="password" name="password" id="password" pattern=".{10,}" required>
+    </label>
+    <label>
+      Phone:
+      <input type="text" name="phone" id="phone" placeholder="111-222-3333" pattern="\d{3}-\d{3}-\d{4}">
+    </label>
+    <button type="submit">Sign Up</button>
+  </form>
+</body>
+</html>
