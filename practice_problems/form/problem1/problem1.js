@@ -29,18 +29,23 @@ function handleValidityBlur(event) {
 
   if (!input.checkValidity()) {
     input.classList.add('error-input')
+    let previousError = input.parentNode.querySelector('.error-message');
+
+    if (previousError) {
+      previousError.remove();
+    }
+
     let errorParagraph = document.createElement('p');
     errorParagraph.textContent = getErrorMessage(id);
     errorParagraph.classList.add('error-message');
     input.parentNode.appendChild(errorParagraph);
   }
-
 }
 
 function handleFocus(event) {
   let input = event.target;
   input.classList.remove('error-input');
-  let errorMessage = input.parentNode.querySelector('p');
+  let errorMessage = input.parentNode.querySelector('.error-message');
 
   if (errorMessage) {
     errorMessage.remove();
