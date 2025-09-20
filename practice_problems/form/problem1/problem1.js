@@ -3,20 +3,26 @@ let inputs = [...form.querySelectorAll('input')];
 let genericError = form.firstElementChild;
 
 const INVALID_EMAIL_MESSAGE = "Please Enter a Valid Email";
+const EMPTY_PASSWORD_MESSAGE = "Password is a required field."
 const INVALID_PASSWORD_MESSAGE = "Password must be at least 10 characters long.";
 const INVALID_PHONE_MESSAGE = "Please Enter a Valid Phone Number.";
-const INVALID_FIRST_NAME_MESSAGE = "First Name is a required field.";
-const INVALID_LAST_NAME_MESSAGE = "Last Name is a required field.";
+const EMPTY_FIRST_NAME_MESSAGE = "First Name is a required field.";
+const EMPTY_LAST_NAME_MESSAGE = "Last Name is a required field.";
 
-function getErrorMessage(id) {
+function getErrorMessage(input) {
+  let id = input.id;
+
   switch (id) {
     case 'first-name':
-      return INVALID_FIRST_NAME_MESSAGE;
+      return EMPTY_FIRST_NAME_MESSAGE;
     case 'last-name':
-      return INVALID_LAST_NAME_MESSAGE;
+      return EMPTY_LAST_NAME_MESSAGE;
     case 'email':
       return INVALID_EMAIL_MESSAGE;
     case 'password':
+      if (input.value.length === 0) {
+        return EMPTY_PASSWORD_MESSAGE;
+      }
       return INVALID_PASSWORD_MESSAGE;
     case 'phone':
       return INVALID_PHONE_MESSAGE;
@@ -25,7 +31,6 @@ function getErrorMessage(id) {
 
 function handleValidityBlur(event) {
   let input = event.target;
-  let id = input.id;
 
   if (!input.checkValidity()) {
     input.classList.add('error-input')
@@ -36,7 +41,7 @@ function handleValidityBlur(event) {
     }
 
     let errorParagraph = document.createElement('p');
-    errorParagraph.textContent = getErrorMessage(id);
+    errorParagraph.textContent = getErrorMessage(input);
     errorParagraph.classList.add('error-message');
     input.parentNode.appendChild(errorParagraph);
   }
