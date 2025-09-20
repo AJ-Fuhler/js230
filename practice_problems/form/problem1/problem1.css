@@ -5,26 +5,38 @@
 body {
   color: white;
   font-family: monospace;
-  background-color: rgb(43, 38, 38);
+  background-color: #2b2626;
+}
+
+header {
+  text-align: center;
 }
 
 form {
+  width: 700px;
+  margin: 0 auto;
   background-color: rgb(64, 81, 87);
   color: white;
   padding: 20px;
+  border-radius: 5px;
 }
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+p {
+  display: inline-block;
 }
 
 input {
-  display: block;
+  display: inline-block;
   height: 30px;
   font-size: 20px;
   border-radius: 5px;
   padding-left: 10px;
+  margin-top: 5px;
   font-family: monospace;
   border: 1.5px solid gray;
 }
@@ -44,4 +56,8 @@ button {
 
 .error-input {
   border-color: red;
+}
+
+.hide {
+  display: none;
 }

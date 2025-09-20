@@ -12,24 +12,30 @@
     <h1>Sign-Up Form</h1>
   </header>
   <form novalidate>
+    <p class="error-message hide">Form cannot be submitted until errors are corrected.</p>
     <label data-id="first-name">
-      First Name:
+      First Name
+      <br>
       <input type="text" name="first-name" id="first-name" required>
     </label>
     <label data-id="last-name">
-      Last Name:
+      Last Name
+      <br>
       <input type="text" name="last-name" id="last-name" required>
     </label>
     <label data-id="email">
-      Email:
+      Email
+      <br>
       <input type="email" name="email" id="email" required>
     </label>
     <label data-id="password">
-      Password:
+      Password
+      <br>
       <input type="password" name="password" id="password" pattern=".{10,}" required>
     </label>
     <label>
-      Phone:
+      Phone
+      <br>
       <input type="text" name="phone" id="phone" placeholder="111-222-3333" pattern="\d{3}-\d{3}-\d{4}">
     </label>
     <button type="submit">Sign Up</button>
